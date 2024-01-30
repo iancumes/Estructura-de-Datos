@@ -1,8 +1,8 @@
 import java.util.Vector;
 
-public class StackWithVector<T> implements IStack<T> {
+public class StackWithVector<T> implements IStack<String> {
 
-    private Vector<T> internalVector;
+    private Vector<String> internalVector;
 
     public StackWithVector() {
         internalVector = new Vector<>();
@@ -19,13 +19,13 @@ public class StackWithVector<T> implements IStack<T> {
     }
 
     @Override
-    public void push(T value) {
+    public void push(String value) {
         internalVector.add(value);
     }
 
     @Override
-    public T pop() {
-        T tempValue = null;
+    public String pop() {
+        String tempValue = null;
         if (!internalVector.isEmpty()) {
             tempValue = internalVector.remove(internalVector.size() - 1);
         }
@@ -33,8 +33,8 @@ public class StackWithVector<T> implements IStack<T> {
     }
 
     @Override
-    public T peek() {
-        T tempValue = null;
+    public String peek() {
+        String tempValue = null;
         if (!internalVector.isEmpty()) {
             tempValue = internalVector.get(internalVector.size() - 1);
         }
