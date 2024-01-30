@@ -9,7 +9,7 @@ public class Calculadora {
         Controlador controlador = new Controlador();
         StackWithVector vectores = new StackWithVector();
 
-        String filePath = "C:\\Users\\Usuario\\Downloads\\a.txt"; // Reemplaza con la ruta de tu archivo .txt
+        String filePath = "a.txt"; // Reemplaza con la ruta de tu archivo .txt
 
         try {
             FileReader fileReader = new FileReader(filePath);
@@ -20,14 +20,20 @@ public class Calculadora {
                 String[] tokens = line.split("\\s+");
 
                 for (String token : tokens) {
-                    if (token.equals("+")) {
+                    if (token.equals("+") || token.equals("-")) {
+                        // Verificar si hay suficientes operandos en la pila
                         if (vectores.count() >= 2) {
                             int n1 = Integer.parseInt(vectores.pop());
                             int n2 = Integer.parseInt(vectores.pop());
-                            String n3 = String.valueOf(controlador.add(n1, n2));
-                            vectores.push(n3);
+
+                            if (token.equals("+")) {
+                                vectores.push(String.valueOf(controlador.add(n2, n1)));
+                            } else if (token.equals("-")) {
+                                vectores.push(String.valueOf(controlador.substraction(n2, n1)));
+                            }
                         } else {
-                            throw new RuntimeException("No hay mas valores :(");
+                            // Manejar el caso de no tener suficientes operandos en la pila
+                            throw new RuntimeException("No hay suficientes operandos para realizar la operación.");
                         }
                     } else {
                         vectores.push(token);
@@ -41,8 +47,10 @@ public class Calculadora {
             throw new RuntimeException(e);
         }
 
+        // Imprimir resultado final que queda en la última posición de la pila
         System.out.println(vectores.peek());
     }
 }
+
 
 
