@@ -9,7 +9,7 @@ public class Calculadora {
         Controlador controlador = new Controlador();
         StackWithVector vectores = new StackWithVector();
 
-        String filePath = "C:\\Users\\luisy\\OneDrive\\Escritorio\\a.txt"; // Reemplaza con la ruta de tu archivo .txt
+        String filePath = "C:\\Users\\Usuario\\Downloads\\a.txt"; // Reemplaza con la ruta de tu archivo .txt
 
         try {
             FileReader fileReader = new FileReader(filePath);
