@@ -20,8 +20,8 @@ random_list = [random.randint(0, 10000) for _ in range(15000)]
 print("Lista original:", random_list)
 
 # Ordenar de forma ascendente
-#cProfile.run("sorted_list = quick_sort(random_list.copy(), True)")
-#print("Lista ordenada de forma ascendente:", sorted_list)
+cProfile.run("sorted_list = quick_sort(random_list.copy(), True)")
+print("Lista ordenada de forma ascendente:", sorted_list)
 
 # Ordenar de forma descendente
 cProfile.run("sorted_list_desc = quick_sort(random_list.copy(), False)")

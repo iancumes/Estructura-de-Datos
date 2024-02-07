@@ -23,7 +23,7 @@ random_list = [random.randint(0, 10000) for _ in range(25000)]
 print("Lista original:", random_list)
 
 # Ordenar de forma ascendente con cProfile
-#cProfile.run("selection_sort(random_list.copy(), True)")
+cProfile.run("selection_sort(random_list.copy(), True)")
 
 # Ordenar de forma descendente con cProfile
 cProfile.run("selection_sort(random_list.copy(), False)")

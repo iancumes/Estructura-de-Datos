@@ -18,12 +18,12 @@ def shell_sort(arr, ascending=True):
     print("Lista ordenada:", arr)
 
 # Generar una lista aleatoria de longitud 10
-random_list = [random.randint(0, 10000) for _ in range(10)]
+random_list = [random.randint(0, 10000) for _ in range(20000)]
 
 print("Lista original:", random_list)
 
 # Ordenar de forma ascendente con cProfile
-#cProfile.run("shell_sort(random_list.copy(), True)")
+cProfile.run("shell_sort(random_list.copy(), True)")
 
 # Ordenar de forma descendente con cProfile
 cProfile.run("shell_sort(random_list.copy(), False)")
