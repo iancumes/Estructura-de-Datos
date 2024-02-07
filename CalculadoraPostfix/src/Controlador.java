@@ -13,18 +13,20 @@ public class Controlador implements ICalculator{
 
     @Override
     public int substraction(int n1, int n2) {
-        n1 = n1 - n2;
-        return n1;
+        int n5 = n1 - n2;
+        return n5;
     }
 
     @Override
     public int multiplication(int n1, int n2) {
-        return 0;
+        int n5 = n1 * n2;
+        return n5;
     }
 
     @Override
     public int division(int n1, int n2) throws Exception {
-        return 0;
+        int n5 = n1 / n2;
+        return n5;
     }
 
     @Override

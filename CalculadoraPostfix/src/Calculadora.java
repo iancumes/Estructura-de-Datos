@@ -20,14 +20,30 @@ public class Calculadora {
                 String[] tokens = line.split("\\s+");
 
                 for (String token : tokens) {
-                    if (token.equals("+")) {
+                    if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) {
                         if (vectores.count() >= 2) {
                             int n1 = Integer.parseInt(vectores.pop());
                             int n2 = Integer.parseInt(vectores.pop());
-                            String n3 = String.valueOf(controlador.add(n1, n2));
-                            vectores.push(n3);
+
+                            switch (token) {
+                                case "+":
+                                    vectores.push(String.valueOf(controlador.add(n2, n1)));
+                                    break;
+                                case "-":
+                                    vectores.push(String.valueOf(controlador.substraction(n2, n1)));
+                                    break;
+                                case "*":
+                                    vectores.push(String.valueOf(controlador.multiplication(n2, n1)));
+                                    break;
+                                case "/":
+                                    vectores.push(String.valueOf(controlador.division(n2, n1)));
+                                    break;
+                                default:
+                                    throw new RuntimeException("Operador no reconocido: " + token);
+                            }
                         } else {
-                            throw new RuntimeException("No hay mas valores :(");
+                            // Manejar el caso de no tener suficientes operandos en la pila
+                            throw new RuntimeException("No hay suficientes operandos para realizar la operación.");
                         }
                     } else {
                         vectores.push(token);
@@ -39,10 +55,14 @@ public class Calculadora {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
+        // Imprimir resultado final que queda en la última posición de la pila
         System.out.println(vectores.peek());
     }
 }
+
 
 
