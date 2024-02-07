@@ -13,16 +13,17 @@ def selection_sort(arr, ascending=True):
                 if arr[j] > arr[min_idx]:
                     min_idx = j
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    
+    # Imprimir la lista ordenada
+    print("Lista ordenada:", arr)
 
 # Generar una lista aleatoria de longitud 10
-random_list = [random.randint(0, 1000) for _ in range(10)]
+random_list = [random.randint(0, 10000) for _ in range(25000)]
 
 print("Lista original:", random_list)
 
-# Ordenar de forma ascendente
-cProfile.run("selection_sort(random_list.copy(), True)")
-print("Lista ordenada de forma ascendente:", random_list)
+# Ordenar de forma ascendente con cProfile
+#cProfile.run("selection_sort(random_list.copy(), True)")
 
-# Ordenar de forma descendente
+# Ordenar de forma descendente con cProfile
 cProfile.run("selection_sort(random_list.copy(), False)")
-print("Lista ordenada de forma descendente:", random_list)
