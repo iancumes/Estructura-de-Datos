@@ -1,6 +1,6 @@
-import java.io.File;
 import java.util.List;
+
 public interface IDataSource {
-    File saveData(Object data, String path);
-    Object loadData(String path);
+    void saveData(List<String[]> data, String path);
+    List<String[]> loadData(String path);
 }

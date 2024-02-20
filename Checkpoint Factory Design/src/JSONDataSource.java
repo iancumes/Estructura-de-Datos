@@ -1,14 +1,34 @@
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 public class JSONDataSource implements IDataSource {
-    @Override
-    public File saveData(Object data, String path) {
-        // Implementation for saving data to JSON file
-        return null;
+
+    private final ObjectMapper objectMapper;
+
+    public JSONDataSource() {
+        this.objectMapper = new ObjectMapper();
     }
 
     @Override
-    public Object loadData(String path) {
-        // Implementation for loading data from JSON file
-        return null;
+    public void saveData(List<String[]> data, String path) {
+        try {
+            objectMapper.writeValue(new File(path), data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<String[]> loadData(String path) {
+        try {
+            return objectMapper.readValue(new File(path), new TypeReference<List<String[]>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
