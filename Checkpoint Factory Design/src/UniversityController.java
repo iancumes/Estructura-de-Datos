@@ -114,6 +114,7 @@ public class UniversityController {
         System.out.println("6. Asignar pago a profesor");
         System.out.println("7. Generar reporte de notas");
         System.out.println("8. Generar reporte de pagos de estudiantes");
+        System.out.println("9. Exportar datos a Csv/XML");
         System.out.println("10. Salir");
         // Aquí puedes agregar más opciones según sea necesario
     }
@@ -248,6 +249,9 @@ case 8:
         System.out.println("No se encontró el estudiante.");
     }
     break;
+    case 9:
+        exportData();
+                break;
     case 10:
         saveData();
                 System.out.println("Saliendo...");
