@@ -54,7 +54,7 @@ class TestMergeSort(unittest.TestCase):
 if __name__ == "__main__":
     # Generar una lista de números aleatorios
     random.seed(42)  # Fijar la semilla para obtener los mismos resultados cada vez
-    lista = [random.randint(0, 1000) for _ in range(10)]
+    lista = [random.randint(0, 10000) for _ in range(10000)]
 
     # Mostrar la lista desordenada
     print("Lista desordenada:")

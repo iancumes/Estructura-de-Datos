@@ -15,7 +15,7 @@ def quick_sort(arr, ascending=True):
             return quick_sort(greater_than_pivot, ascending) + [pivot] + quick_sort(less_than_pivot, ascending)
 
 # Generar una lista aleatoria de longitud 10
-random_list = [random.randint(0, 100) for _ in range(10)]
+random_list = [random.randint(0, 10000) for _ in range(15000)]
 
 print("Lista original:", random_list)
 

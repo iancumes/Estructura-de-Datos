@@ -33,16 +33,17 @@ def radix_sort(arr, ascending=True):
     while max_val // exp > 0:
         counting_sort(arr, exp, ascending)
         exp *= 10
+    
+    # Imprimir la lista ordenada
+    print("Lista ordenada:", arr)
 
 # Generar una lista aleatoria de longitud 10
-random_list = [random.randint(0, 1000) for _ in range(10)]
+random_list = [random.randint(0, 10000) for _ in range(20000)]
 
 print("Lista original:", random_list)
 
-# Ordenar de forma ascendente
+# Ordenar de forma ascendente con cProfile
 cProfile.run("radix_sort(random_list.copy(), True)")
-print("Lista ordenada de forma ascendente:", random_list)
 
-# Ordenar de forma descendente
+# Ordenar de forma descendente con cProfile
 cProfile.run("radix_sort(random_list.copy(), False)")
-print("Lista ordenada de forma descendente:", random_list)
