@@ -8,18 +8,11 @@ import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class UniversityController {
     private static final String DATA_FILE_PATH = "data_prueba.json"; // Ruta del archivo de datos
-    private static final String ADMIN_USERNAME = "admin";
-    private static final String ADMIN_PASSWORD = "adminpass";
-    private static final String STUDENT_USERNAME = "student";
-    private static final String STUDENT_PASSWORD = "studentpass";
-    private static final String AUDITOR_USERNAME = "auditor";
-    private static final String AUDITOR_PASSWORD = "auditorpass";
-    private static final String FACULTY_USERNAME = "faculty";
-    private static final String FACULTY_PASSWORD = "facultypass";
     private static final List<Faculty> faculties = new ArrayList<>();
     private static final List<Student> students = new ArrayList<>();
     private static final List<Course> courses = new ArrayList<>();
@@ -74,18 +67,30 @@ public class UniversityController {
     }
 
     private static User authenticate(String username, String password) {
-        if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
-            return new Admin(username, password);
-        } else if (username.equals(STUDENT_USERNAME) && password.equals(STUDENT_PASSWORD)) {
-            return new Student(username, password);
-        } else if (username.equals(AUDITOR_USERNAME) && password.equals(AUDITOR_PASSWORD)) {
-            return new Auditor(username, password);  
-        } else if (username.equals(FACULTY_USERNAME) && password.equals(FACULTY_PASSWORD)) {
-            return new Faculty(username, password);  
-        }  else {
-            return null;
+        // Recorrer todas las listas de usuarios
+        for (Student student : students) {
+            if (student.getUsername().equals(username) && student.getPassword().equals(password)) {
+                return student; // Si se encuentra un estudiante con las credenciales proporcionadas
+            }
         }
+        for (Faculty faculty : faculties) {
+            if (faculty.getUsername().equals(username) && faculty.getPassword().equals(password)) {
+                return faculty; // Si se encuentra un profesor con las credenciales proporcionadas
+            }
+        }
+        for (Auditor auditor : auditors) {
+            if (auditor.getUsername().equals(username) && auditor.getPassword().equals(password)) {
+                return auditor; // Si se encuentra un auditor con las credenciales proporcionadas
+            }
+        }
+        for (Admin admin : admins) {
+            if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+                return admin; // Si se encuentra un administrador con las credenciales proporcionadas
+            }
+        }
+        return null; // Si no se encuentra ningún usuario con las credenciales proporcionadas
     }
+    
 
     private static void showOptions(User user) {
         if (user instanceof Admin) {
@@ -487,46 +492,63 @@ private static void executeAuditorOption(int option) {
         return courseData;
     }
     
-    private static void saveData() {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode rootNode = objectMapper.createObjectNode();
+   private static void saveData() {
+    try {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode rootNode = objectMapper.createObjectNode();
 
-            // Agregar listas de estudiantes, profesores, cursos, etc. al nodo raíz
-            ((ObjectNode) rootNode).putPOJO("students", students);
-            ((ObjectNode) rootNode).putPOJO("faculties", faculties);
-            ((ObjectNode) rootNode).putPOJO("courses", courses);
-            ((ObjectNode) rootNode).putPOJO("auditors", auditors);
-            ((ObjectNode) rootNode).putPOJO("admins", admins);
+        // Convertir cada lista a un ArrayNode y luego agregarlo al objeto raíz
+        ArrayNode studentsArray = objectMapper.valueToTree(students);
+        ArrayNode facultiesArray = objectMapper.valueToTree(faculties);
+        ArrayNode coursesArray = objectMapper.valueToTree(courses);
+        ArrayNode auditorsArray = objectMapper.valueToTree(auditors);
+        ArrayNode adminsArray = objectMapper.valueToTree(admins);
 
-            // Escribir el JSON en el archivo
-            objectMapper.writeValue(new File(DATA_FILE_PATH), rootNode);
+        rootNode.set("students", studentsArray);
+        rootNode.set("faculties", facultiesArray);
+        rootNode.set("courses", coursesArray);
+        rootNode.set("auditors", auditorsArray);
+        rootNode.set("admins", adminsArray);
 
-            System.out.println("Datos guardados correctamente en el archivo: " + DATA_FILE_PATH);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error al guardar los datos.");
-        }
+        // Escribir el JSON en el archivo
+        objectMapper.writeValue(new File(DATA_FILE_PATH), rootNode);
+
+        System.out.println("Datos guardados correctamente en el archivo: " + DATA_FILE_PATH);
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los datos.");
     }
+}
+
+    
 
     private static void loadData() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(new File(DATA_FILE_PATH));
-
+    
             // Cargar listas de estudiantes, profesores, cursos, etc. desde el archivo
             students.clear();
             faculties.clear();
             courses.clear();
             auditors.clear();
             admins.clear();
-
+    
+            // Cargar estudiantes
             students.addAll(Arrays.asList(objectMapper.treeToValue(rootNode.get("students"), Student[].class)));
+    
+            // Cargar profesores
             faculties.addAll(Arrays.asList(objectMapper.treeToValue(rootNode.get("faculties"), Faculty[].class)));
+    
+            // Cargar cursos
             courses.addAll(Arrays.asList(objectMapper.treeToValue(rootNode.get("courses"), Course[].class)));
+    
+            // Cargar auditores
             auditors.addAll(Arrays.asList(objectMapper.treeToValue(rootNode.get("auditors"), Auditor[].class)));
+    
+            // Cargar administradores
             admins.addAll(Arrays.asList(objectMapper.treeToValue(rootNode.get("admins"), Admin[].class)));
-
+    
             System.out.println("Datos cargados correctamente desde el archivo: " + DATA_FILE_PATH);
         } catch (IOException e) {
             e.printStackTrace();
