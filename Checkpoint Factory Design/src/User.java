@@ -7,5 +7,11 @@ public abstract class User {
         this.password = password;
     }
 
-    public abstract void login();
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

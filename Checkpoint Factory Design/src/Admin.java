@@ -1,35 +1,58 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Admin extends User {
+    private List<Course> courses;
+    private List<Student> students;
+    private List<Faculty> faculties;
+
+    // Constructor predeterminado sin argumentos
+    public Admin() {
+        super("", ""); // Puedes proporcionar valores predeterminados para el nombre de usuario y la contraseña si es necesario
+        courses = new ArrayList<>();
+        students = new ArrayList<>();
+        faculties = new ArrayList<>();
+    }
+
     public Admin(String username, String password) {
         super(username, password);
+        courses = new ArrayList<>();
+        students = new ArrayList<>();
+        faculties = new ArrayList<>();
     }
 
-    @Override
-    public void login() {
-        // Implementation for admin login
+    public void createCourse(String courseName, Faculty faculty) {
+        Course course = new Course(courseName, faculty);
+        courses.add(course);
     }
 
-    // Additional functionalities specific to admin
-    public void createCourse() {
-        // Implementation for creating courses
+    public void createStudent(String username, String password) {
+        Student student = new Student(username, password);
+        students.add(student);
     }
 
-    public void createUser() {
-        // Implementation for creating users
+    public void createFaculty(String username, String password) {
+        Faculty faculty = new Faculty(username, password);
+        faculties.add(faculty);
     }
 
-    public void assignStudentToCourse() {
-        // Implementation for assigning students to courses
+    public void assignStudentToCourse(Student student, Course course) {
+        course.addStudent(student);
     }
 
-    public void assignFacultyToCourse() {
-        // Implementation for assigning faculty to courses
+    public void assignFacultyToCourse(Faculty faculty, Course course) {
+        course.setCourseFaculty(faculty);
     }
 
-    public void assignPaymentToFaculty() {
-        // Implementation for assigning payments to faculty
+    public void assignPaymentToFaculty(Faculty faculty, double amount) {
+        // Implement logic to assign payment to faculty
     }
 
-    public void generateReports() {
-        // Implementation for generating reports
+    public void generateGradeReport(Student student) {
+        // Implement logic to generate a grade report for a student
+    }
+
+    public void generatePaymentReport(Student student) {
+        // Implement logic to generate a payment report for a student
     }
 }

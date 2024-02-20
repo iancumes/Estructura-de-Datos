@@ -1,11 +1,11 @@
 public class Auditor extends User {
-    public Auditor(String username, String password) {
-        super(username, password);
+    public Auditor() {
+        // Constructor predeterminado sin argumentos
+        super("", ""); // Puedes proporcionar valores predeterminados para el nombre de usuario y la contraseña si es necesario
     }
 
-    @Override
-    public void login() {
-        // Implementation for auditor login
+    public Auditor(String username, String password) {
+        super(username, password);
     }
 
     // Additional functionalities specific to auditor

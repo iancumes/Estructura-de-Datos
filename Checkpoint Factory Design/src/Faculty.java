@@ -1,23 +1,26 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Faculty extends User {
-    public Faculty(String username, String password) {
+    
+
+    public Faculty() {
+        super("", ""); // Constructor predeterminado con valores predeterminados o vacíos para el nombre de usuario y la contraseña
+    }
+
+    public Faculty(String username, String password ) {
         super(username, password);
     }
 
-    @Override
-    public void login() {
-        // Implementation for faculty login
-    }
-
-    // Additional functionalities specific to faculty
-    public void addGrades() {
-        // Implementation for adding grades
-    }
-
-    public void collectPayment() {
-        // Implementation for collecting payments
+    public void enterGrades(Student student, Course course, List<Double> grades) {
+        // Implement logic for faculty to enter grades for students
     }
 
     public void viewPaymentHistory() {
-        // Implementation for viewing payment history
+        // Implement logic for faculty to view payment history
+    }
+
+    public void collectPayment(Student student, double amount) {
+        // Implement logic for faculty to collect payment from students
     }
 }

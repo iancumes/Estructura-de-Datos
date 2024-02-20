@@ -1,0 +1,32 @@
+{
+    "students": [
+      {
+        "username": "student1",
+        "password": "studentpass1"
+      }
+    ],
+    "faculties": [
+      {
+        "username": "faculty1",
+        "password": "facultypass1"
+      }
+    ],
+    "courses": [
+      {
+        "courseName": "Mathematics"
+      }
+    ],
+    "auditors": [
+      {
+        "username": "auditor1",
+        "password": "auditorpass1"
+      }
+    ],
+    "admins": [
+      {
+        "username": "admin1",
+        "password": "adminpass1"
+      }
+    ]
+  }
+  
