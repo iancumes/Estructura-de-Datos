@@ -114,7 +114,7 @@ public class UniversityController {
         System.out.println("6. Asignar pago a profesor");
         System.out.println("7. Generar reporte de notas");
         System.out.println("8. Generar reporte de pagos de estudiantes");
-        System.out.println("9. Exportar datos a Csv/XML");
+        System.out.println("9. Exportar datos a Csv/TXT");
         System.out.println("10. Salir");
         // Aquí puedes agregar más opciones según sea necesario
     }
@@ -431,7 +431,7 @@ private static void executeAuditorOption(int option) {
     }
     private static void exportData() {
         System.out.println("Seleccione el formato de exportación:");
-        System.out.println("1. Exportar a XML");
+        System.out.println("1. Exportar a TXT");
         System.out.println("2. Exportar a CSV");
         System.out.print("Seleccione una opción: ");
         int exportOption = scanner.nextInt();
@@ -440,9 +440,9 @@ private static void executeAuditorOption(int option) {
         IDataSource dataSource;
         switch (exportOption) {
             case 1:
-                dataSource = DataSourceFactory.getDataSourceInstance(DataSourceFactory.XML_TYPE);
-                dataSource.saveData(collectAllData(), "exported_data.xml");
-                System.out.println("Datos exportados a XML correctamente.");
+                dataSource = DataSourceFactory.getDataSourceInstance(DataSourceFactory.TXT_TYPE);
+                dataSource.saveData(collectAllData(), "exported_data.txt");
+                System.out.println("Datos exportados a TXT correctamente.");
                 break;
             case 2:
                 dataSource = DataSourceFactory.getDataSourceInstance(DataSourceFactory.CSV_TYPE);
