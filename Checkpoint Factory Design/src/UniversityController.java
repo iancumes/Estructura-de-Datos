@@ -248,6 +248,8 @@ case 8:
         System.out.println("No se encontró el estudiante.");
     }
     break;
+    case 9:
+      exportData();
     case 10:
         saveData();
                 System.out.println("Saliendo...");
