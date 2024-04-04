@@ -22,11 +22,11 @@ public class DictionaryProgram {
 
         // Recorrer el árbol de español In-order y mostrar las palabras ordenadas
         System.out.println("\nPalabras ordenadas en español:");
-        inOrderTraversal(spanishTree);
+        inOrderTraversalesp(spanishTree);
 
         // Recorrer el árbol de francés In-order y mostrar las palabras ordenadas
         System.out.println("\nPalabras ordenadas en francés:");
-        inOrderTraversal(frenchTree);
+        inOrderTraversalfre(frenchTree);
 
         // Leer el archivo de texto y traducir las palabras
         translateText("texto.txt", englishTree, spanishTree, frenchTree);
@@ -52,10 +52,28 @@ public class DictionaryProgram {
             e.printStackTrace();
         }
     }
+    private static void inOrderTraversalesp(BinarySearchTree<String, Association> tree) {
+        ArrayList<String> words = new ArrayList<>();
+        tree.InOrderWalk((Association association) -> {
+            words.add(association.getSpanish() + " (" + association.getEnglish() + ", " + association.getFrench() + ")");
+        });
+        for (String word : words) {
+            System.out.println(word);
+        }
+    }
     private static void inOrderTraversal(BinarySearchTree<String, Association> tree) {
         ArrayList<String> words = new ArrayList<>();
         tree.InOrderWalk((Association association) -> {
             words.add(association.getEnglish() + " (" + association.getSpanish() + ", " + association.getFrench() + ")");
+        });
+        for (String word : words) {
+            System.out.println(word);
+        }
+    }
+    private static void inOrderTraversalfre(BinarySearchTree<String, Association> tree) {
+        ArrayList<String> words = new ArrayList<>();
+        tree.InOrderWalk((Association association) -> {
+            words.add(association.getFrench() + " (" + association.getSpanish() + ", " + association.getEnglish() + ")");
         });
         for (String word : words) {
             System.out.println(word);
