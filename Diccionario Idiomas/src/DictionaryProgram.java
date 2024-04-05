@@ -29,6 +29,7 @@ public class DictionaryProgram {
         inOrderTraversalfre(frenchTree);
 
         // Leer el archivo de texto y traducir las palabras
+        System.out.println("Frase traducida");
         translateText("texto.txt", englishTree, spanishTree, frenchTree);
     }
 
