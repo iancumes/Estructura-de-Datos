@@ -1,4 +1,4 @@
-class Proceso implements Comparable<Proceso> {
+public class Proceso implements Comparable<Proceso> {
     private String nombre;
     private String usuario;
     private int nice;
@@ -18,6 +18,7 @@ class Proceso implements Comparable<Proceso> {
 
     @Override
     public String toString() {
-        return nombre + "," + usuario + "," + nice + ",PR=" + priority;
+        int pr = this.priority + 100; // Convertir la prioridad a un rango de 100 a 139
+        return nombre + "," + usuario + "," + nice + ",PR = " + pr;
     }
 }

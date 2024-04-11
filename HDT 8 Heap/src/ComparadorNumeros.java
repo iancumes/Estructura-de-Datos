@@ -1,9 +1,15 @@
-
 import java.util.Comparator;
 
-class ComparadorNumeros<T extends Comparable<T>> implements Comparator<T> {
+public class ComparadorNumeros<Integer> implements Comparator<Integer> {
+
     @Override
-    public int compare(T o1, T o2) {
-        return o1.compareTo(o2);
+    public int compare(Integer o1, Integer o2) {
+        if ((int)o1 == (int)o2)
+            return 0;
+        else if ((int)o1 > (int)o2)
+            return -1;
+        else
+            return 1;
     }
+
 }

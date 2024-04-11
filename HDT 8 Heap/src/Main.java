@@ -20,7 +20,7 @@ public class Main {
                 String nombre = parts[0];
                 String usuario = parts[1];
                 int nice = Integer.parseInt(parts[2]);
-                int priority = 120 + nice;
+                int priority = 20 + nice;
                 Proceso proceso = new Proceso(nombre, usuario, nice, priority);
                 heap.Insert(priority, proceso);
             }
