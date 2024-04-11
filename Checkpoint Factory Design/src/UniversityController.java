@@ -250,8 +250,12 @@ case 8:
     }
     break;
     case 9:
+<<<<<<< HEAD
+      exportData();
+=======
         exportData();
                 break;
+>>>>>>> 8f3fe5b808288910195e19beaa10a6a48f2e674b
     case 10:
         saveData();
                 System.out.println("Saliendo...");

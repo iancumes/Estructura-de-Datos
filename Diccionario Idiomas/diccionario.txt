@@ -1,0 +1,6 @@
+house,casa,loger
+dog,perro,chien
+homework,tarea,devoirs
+woman,mujer,femme
+town,pueblo,ville
+yes,si,Oui
